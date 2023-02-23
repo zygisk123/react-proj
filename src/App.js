@@ -1,7 +1,8 @@
-import './App.css';
 import Papa from 'papaparse';
 import { useState } from 'react';
 import { Fragment } from 'react';
+import Input from './components/Input/Input';
+import Table from './components/Table/Table';
 
 function App() {
 
@@ -26,40 +27,17 @@ function App() {
         setColumnArray(columnArray[0]);
         setValues(valuesArray);
       }
-    }
-      );
+    });
   }
 
   return (
     <Fragment>
-      <div className="App">
-        <input
+        <Input
           type="file"
           name='file'
           accept='.csv'
-          onChange={fileHandler}
-          style={{}}>
-          
-        </input>
-      </div>
-      <div>
-        <table >
-          <thead>
-            <tr>
-              {columnArray.map((col, id) => (<th key={id}>{col}</th>))}
-            </tr>
-          </thead>
-          <tbody>
-            {values.map((values,id) =>(
-              <tr key={id}>
-                {values.map((value, i) => (
-                  <td key={i}>{value}</td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+          onChange={fileHandler} />
+        <Table columnArray={columnArray} values={values}/>
     </Fragment>
   );
 }
